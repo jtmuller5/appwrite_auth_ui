@@ -1,0 +1,1 @@
+enum AppwriteAuthAction { signIn, signUp }
