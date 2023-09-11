@@ -202,7 +202,8 @@ class _AppwriteSocialsAuthState extends State<AppwriteSocialsAuth> {
             }
           } catch (error) {
             if (widget.onError == null) {
-              context.showErrorSnackBar('Unexpected error has occurred: $error');
+              context
+                  .showErrorSnackBar('Unexpected error has occurred: $error');
             } else {
               widget.onError?.call(error);
             }
@@ -233,7 +234,8 @@ class _AppwriteSocialsAuthState extends State<AppwriteSocialsAuth> {
                   icon: iconWidget,
                   style: authButtonStyle,
                   onPressed: onAuthButtonPressed,
-                  label: Text('Continue with ${socialProvider.capitalizedName}'),
+                  label:
+                      Text('Continue with ${socialProvider.capitalizedName}'),
                 ),
         );
       },

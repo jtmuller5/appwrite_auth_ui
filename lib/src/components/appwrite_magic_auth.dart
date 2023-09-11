@@ -70,20 +70,17 @@ class _AppwriteMagicAuthState extends State<AppwriteMagicAuth> {
           ElevatedButton(
             child: (_isLoading)
                 ? SizedBox(
-              height: 16,
-              width: 16,
-              child: CircularProgressIndicator(
-                color: Theme
-                    .of(context)
-                    .colorScheme
-                    .onPrimary,
-                strokeWidth: 1.5,
-              ),
-            )
+                    height: 16,
+                    width: 16,
+                    child: CircularProgressIndicator(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      strokeWidth: 1.5,
+                    ),
+                  )
                 : const Text(
-              'Continue with magic Link',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+                    'Continue with magic Link',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
             onPressed: () async {
               if (!_formKey.currentState!.validate()) {
                 return;
@@ -94,7 +91,8 @@ class _AppwriteMagicAuthState extends State<AppwriteMagicAuth> {
               try {
                 await Account(appwrite).createMagicURLSession(
                   email: _email.text,
-                  userId: await Account(appwrite).get().then((value) => value.$id),
+                  userId:
+                      await Account(appwrite).get().then((value) => value.$id),
                 );
                 if (mounted) {
                   context.showSnackBar('Check your email inbox!');

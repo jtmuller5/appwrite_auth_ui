@@ -1,7 +1,10 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
 
-final appwrite = Client().setEndpoint('https://cloud.appwrite.io/v1').setProject(const String.fromEnvironment('APPWRITE_PROJECT_ID'));
+final appwrite =
+    Client().setEndpoint('https://cloud.appwrite.io/v1').setProject(
+          const String.fromEnvironment('APPWRITE_PROJECT_ID'),
+        );
 
 SizedBox spacer(double height) {
   return SizedBox(

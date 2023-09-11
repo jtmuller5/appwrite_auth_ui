@@ -71,7 +71,8 @@ class _AppwriteVerifyPhoneState extends State<AppwriteVerifyPhone> {
               }
               try {
                 final response = await Account(appwrite).updatePhoneSession(
-                  userId: await Account(appwrite).get().then((value) => value.$id),
+                  userId:
+                      await Account(appwrite).get().then((value) => value.$id),
                   secret: _code.text,
                 );
                 widget.onSuccess(response);
@@ -83,7 +84,8 @@ class _AppwriteVerifyPhoneState extends State<AppwriteVerifyPhone> {
                 }
               } catch (error) {
                 if (widget.onError == null) {
-                  context.showErrorSnackBar('Unexpected error has occurred: $error');
+                  context.showErrorSnackBar(
+                      'Unexpected error has occurred: $error');
                 } else {
                   widget.onError?.call(error);
                 }

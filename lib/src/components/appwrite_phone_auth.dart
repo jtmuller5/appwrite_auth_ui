@@ -92,14 +92,18 @@ class _AppwritePhoneAuthState extends State<AppwritePhoneAuth> {
               try {
                 if (isSigningIn) {
                   final response = await Account(appwrite).createPhoneSession(
-                    userId: await Account(appwrite).get().then((value) => value.$id),
+                    userId: await Account(appwrite)
+                        .get()
+                        .then((value) => value.$id),
                     phone: _phone.text,
                   );
                   widget.onSuccess(response);
                 } else {
                   final response = await Account(appwrite).createPhoneSession(
                     phone: _phone.text,
-                    userId: await Account(appwrite).get().then((value) => value.$id),
+                    userId: await Account(appwrite)
+                        .get()
+                        .then((value) => value.$id),
                   );
                   if (!mounted) return;
                   widget.onSuccess(response);
@@ -112,7 +116,8 @@ class _AppwritePhoneAuthState extends State<AppwritePhoneAuth> {
                 }
               } catch (error) {
                 if (widget.onError == null) {
-                  context.showErrorSnackBar('Unexpected error has occurred: $error');
+                  context.showErrorSnackBar(
+                      'Unexpected error has occurred: $error');
                 } else {
                   widget.onError?.call(error);
                 }

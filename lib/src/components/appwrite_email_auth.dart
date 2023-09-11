@@ -53,10 +53,6 @@ class MetaDataField {
 /// ```
 /// /// {@endtemplate}
 class AppwriteEmailAuth extends StatefulWidget {
-  /// The URL to redirect the user to when clicking on the link on the
-  /// confirmation link after signing up.
-  final String? redirectTo;
-
   /// Callback for the user to complete a sign in.
   final void Function(Session session) onSignInComplete;
 
@@ -78,17 +74,17 @@ class AppwriteEmailAuth extends StatefulWidget {
   /// `redirectUrl` to be passed to the createRecovery method
   ///
   /// Typically used to pass a DeepLink
-  final String? redirectUrl;
+  final String redirectUrl;
 
   /// {@macro Appwrite_email_auth}
   const AppwriteEmailAuth({
     Key? key,
-    this.redirectTo,
     required this.onSignInComplete,
     required this.onSignUpComplete,
+    required this.redirectUrl,
     this.onPasswordResetEmailSent,
     this.onError,
-    this.metadataFields, this.redirectUrl,
+    this.metadataFields,
   }) : super(key: key);
 
   @override
@@ -111,7 +107,8 @@ class _AppwriteEmailAuthState extends State<AppwriteEmailAuth> {
   @override
   void initState() {
     super.initState();
-    _metadataControllers = Map.fromEntries((widget.metadataFields ?? []).map((metadataField) => MapEntry(metadataField, TextEditingController())));
+    _metadataControllers = Map.fromEntries((widget.metadataFields ?? []).map(
+        (metadataField) => MapEntry(metadataField, TextEditingController())));
   }
 
   @override
@@ -135,7 +132,9 @@ class _AppwriteEmailAuthState extends State<AppwriteEmailAuth> {
             keyboardType: TextInputType.emailAddress,
             autofillHints: const [AutofillHints.email],
             validator: (value) {
-              if (value == null || value.isEmpty || !EmailValidator.validate(_emailController.text)) {
+              if (value == null ||
+                  value.isEmpty ||
+                  !EmailValidator.validate(_emailController.text)) {
                 return 'Please enter a valid email address';
               }
               return null;
@@ -211,13 +210,15 @@ class _AppwriteEmailAuthState extends State<AppwriteEmailAuth> {
                   }
                 } on AppwriteException catch (error) {
                   if (widget.onError == null) {
-                    context.showErrorSnackBar(error.message ?? 'Error occurred');
+                    context
+                        .showErrorSnackBar(error.message ?? 'Error occurred');
                   } else {
                     widget.onError?.call(error);
                   }
                 } catch (error) {
                   if (widget.onError == null) {
-                    context.showErrorSnackBar('Unexpected error has occurred: $error');
+                    context.showErrorSnackBar(
+                        'Unexpected error has occurred: $error');
                   } else {
                     widget.onError?.call(error);
                   }
@@ -248,7 +249,9 @@ class _AppwriteEmailAuthState extends State<AppwriteEmailAuth> {
                   _isSigningIn = !_isSigningIn;
                 });
               },
-              child: Text(_isSigningIn ? 'Don\'t have an account? Sign up' : 'Already have an account? Sign in'),
+              child: Text(_isSigningIn
+                  ? 'Don\'t have an account? Sign up'
+                  : 'Already have an account? Sign in'),
             ),
           ],
           if (_isSigningIn && _forgotPassword) ...[
@@ -264,11 +267,14 @@ class _AppwriteEmailAuthState extends State<AppwriteEmailAuth> {
                   });
 
                   final email = _emailController.text.trim();
-                  await Account(appwrite).createRecovery(email: email, url: widget.redirectUrl!);
+                  await Account(appwrite)
+                      .createRecovery(email: email, url: widget.redirectUrl);
                   widget.onPasswordResetEmailSent?.call();
                 } on AppwriteException catch (error) {
+                  debugPrint('Appwrite Error: $error');
                   widget.onError?.call(error);
                 } catch (error) {
+                  debugPrint('Error: $error');
                   widget.onError?.call(error);
                 }
               },

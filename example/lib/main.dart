@@ -9,14 +9,15 @@ import './update_password.dart';
 import 'phone_sign_in.dart';
 import './verify_phone.dart';
 
+late Client appwrite;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  /// TODO: replace with your credentials
-  await appwrite.initialize(
-    url: 'https://yourappwriteurl.appwrite.co',
-    anonKey: 'your_anon_key',
-  );
+  appwrite = Client().setEndpoint('https://cloud.appwrite.io/v1').setProject(
+        const String.fromEnvironment('APPWRITE_PROJECT_ID'),
+      );
+
   runApp(const MyApp());
 }
 

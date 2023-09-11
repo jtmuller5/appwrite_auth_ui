@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:appwrite_auth_ui/appwrite_auth_ui.dart';
 
 import 'constants.dart';
+import 'main.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class Home extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                appwrite.instance.client.auth.signOut();
+                Account(appwrite).deleteSessions();
                 Navigator.of(context).pushReplacementNamed('/');
               },
               child: const Text(

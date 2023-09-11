@@ -5,9 +5,6 @@ import 'package:appwrite_auth_ui/src/utils/constants.dart';
 
 /// UI component to create password reset form
 class AppwriteResetPassword extends StatefulWidget {
-  /// accessToken of the user
-  final String? accessToken;
-
   /// Method to be called when the auth action is success
   final void Function(User response) onSuccess;
 
@@ -16,7 +13,6 @@ class AppwriteResetPassword extends StatefulWidget {
 
   const AppwriteResetPassword({
     Key? key,
-    this.accessToken,
     required this.onSuccess,
     this.onError,
   }) : super(key: key);
@@ -78,7 +74,8 @@ class _AppwriteResetPasswordState extends State<AppwriteResetPassword> {
                 }
               } catch (error) {
                 if (widget.onError == null) {
-                  context.showErrorSnackBar('Unexpected error has occurred: $error');
+                  context.showErrorSnackBar(
+                      'Unexpected error has occurred: $error');
                 } else {
                   widget.onError?.call(error);
                 }

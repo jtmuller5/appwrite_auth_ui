@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite_auth_ui/appwrite_auth_ui.dart';
 
@@ -15,7 +14,8 @@ class SignUp extends StatelessWidget {
         padding: const EdgeInsets.all(24.0),
         children: [
           AppwriteEmailAuth(
-            redirectTo: kIsWeb ? null : 'io.appwrite.flutter://',
+            redirectUrl:
+                const String.fromEnvironment('APPWRITE_MAGIC_LINK_URL'),
             onSignInComplete: (response) {
               Navigator.of(context).pushReplacementNamed('/home');
             },

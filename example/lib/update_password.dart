@@ -1,3 +1,4 @@
+import 'package:example/main.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite_auth_ui/appwrite_auth_ui.dart';
 
@@ -15,8 +16,6 @@ class UpdatePassword extends StatelessWidget {
         child: Column(
           children: [
             AppwriteResetPassword(
-              accessToken:
-                  appwrite.instance.client.auth.currentSession!.accessToken,
               onSuccess: (response) {
                 Navigator.of(context).pushReplacementNamed('/home');
               },
