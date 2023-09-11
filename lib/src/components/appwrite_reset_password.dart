@@ -23,11 +23,12 @@ class AppwriteResetPassword extends StatefulWidget {
 
 class _AppwriteResetPasswordState extends State<AppwriteResetPassword> {
   final _formKey = GlobalKey<FormState>();
-  final _password = TextEditingController();
+  final _oldPassword = TextEditingController();
+  final _newPassword = TextEditingController();
 
   @override
   void dispose() {
-    _password.dispose();
+    _oldPassword.dispose();
     super.dispose();
   }
 
@@ -47,9 +48,22 @@ class _AppwriteResetPasswordState extends State<AppwriteResetPassword> {
             },
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.lock),
-              label: Text('Enter your password'),
+              label: Text('Enter your old password'),
             ),
-            controller: _password,
+            controller: _oldPassword,
+          ),
+          TextFormField(
+            validator: (value) {
+              if (value == null || value.isEmpty || value.length < 6) {
+                return 'Please enter a password that is at least 6 characters long';
+              }
+              return null;
+            },
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.lock),
+              label: Text('Enter your new password'),
+            ),
+            controller: _newPassword,
           ),
           spacer(16),
           ElevatedButton(
@@ -63,7 +77,8 @@ class _AppwriteResetPasswordState extends State<AppwriteResetPassword> {
               }
               try {
                 final response = await Account(appwrite).updatePassword(
-                  password: _password.text,
+                  password: _newPassword.text,
+                  oldPassword: _oldPassword.text,
                 );
                 widget.onSuccess.call(response);
               } on AppwriteException catch (error) {
