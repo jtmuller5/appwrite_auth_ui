@@ -1,3 +1,5 @@
+![Appwrite Auth UI](https://github.com/jtmuller5/appwrite_auth_ui/raw/main/assets/appwrite_social.png)
+
 A simple library of predefined widgets to easily and quickly create auth components using Flutter and Appwrite.
 
 ## Disclaimer
