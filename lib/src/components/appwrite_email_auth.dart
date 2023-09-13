@@ -1,5 +1,5 @@
 import 'package:appwrite/appwrite.dart';
-import 'package:appwrite/models.dart';
+import 'package:appwrite/models.dart' hide Account;
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite_auth_ui/src/utils/constants.dart';
@@ -59,7 +59,7 @@ class AppwriteEmailAuth extends StatefulWidget {
   /// Callback for the user to complete a signUp.
   ///
   /// If email confirmation is turned on, the user is
-  final void Function(Session session) onSignUpComplete;
+  final void Function(User sessionser) onSignUpComplete;
 
   /// Callback for sending the password reset email
   final void Function()? onPasswordResetEmailSent;
@@ -202,7 +202,8 @@ class _AppwriteEmailAuthState extends State<AppwriteEmailAuth> {
                     );
                     widget.onSignInComplete.call(response);
                   } else {
-                    final response = await Account(appwrite).createEmailSession(
+                    final response = await Account(appwrite).create(
+                      userId: ID.unique(),
                       email: _emailController.text.trim(),
                       password: _passwordController.text.trim(),
                     );

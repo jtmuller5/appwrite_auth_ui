@@ -1,5 +1,5 @@
 import 'package:appwrite/appwrite.dart';
-import 'package:appwrite/models.dart';
+import 'package:appwrite/models.dart' hide Account;
 import 'package:flutter/material.dart';
 import 'package:appwrite_auth_ui/src/utils/constants.dart';
 import 'package:appwrite_auth_ui/appwrite_auth_ui.dart';

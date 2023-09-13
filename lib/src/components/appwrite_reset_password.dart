@@ -1,4 +1,4 @@
-import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/appwrite.dart' as auth;
 import 'package:appwrite/models.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite_auth_ui/src/utils/constants.dart';
@@ -76,12 +76,12 @@ class _AppwriteResetPasswordState extends State<AppwriteResetPassword> {
                 return;
               }
               try {
-                final response = await Account(appwrite).updatePassword(
+                final response = await auth.Account(appwrite).updatePassword(
                   password: _newPassword.text,
                   oldPassword: _oldPassword.text,
                 );
                 widget.onSuccess.call(response);
-              } on AppwriteException catch (error) {
+              } on auth.AppwriteException catch (error) {
                 if (widget.onError == null) {
                   context.showErrorSnackBar(error.message ?? error.toString());
                 } else {
@@ -89,8 +89,7 @@ class _AppwriteResetPasswordState extends State<AppwriteResetPassword> {
                 }
               } catch (error) {
                 if (widget.onError == null) {
-                  context.showErrorSnackBar(
-                      'Unexpected error has occurred: $error');
+                  context.showErrorSnackBar('Unexpected error has occurred: $error');
                 } else {
                   widget.onError?.call(error);
                 }

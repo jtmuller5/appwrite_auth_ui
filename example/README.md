@@ -1,3 +1,3 @@
-# appwrite Auth UI Example
+# example
 
-Example application to demonstrate how to use appwrite Auth UI.
+A new Flutter project.
