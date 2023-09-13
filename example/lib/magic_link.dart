@@ -19,6 +19,9 @@ class MagicLink extends StatelessWidget {
               onSuccess: (response) {
                 Navigator.of(context).pushReplacementNamed('/home');
               },
+              onError: (error) {
+                // Do something with the error
+              },
               redirectUrl: kIsWeb
                   ? null
                   : 'io.appwrite.flutterquickstart://login-callback',
@@ -29,7 +32,7 @@ class MagicLink extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/sign_in');
+                Navigator.pushNamed(context, '/');
               },
             ),
           ],

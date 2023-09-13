@@ -16,6 +16,9 @@ class UpdatePassword extends StatelessWidget {
         child: Column(
           children: [
             AppwriteResetPassword(
+              onError: (error) {
+                // Do something with the error
+              },
               onSuccess: (response) {
                 Navigator.of(context).pushReplacementNamed('/home');
               },

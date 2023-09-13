@@ -14,8 +14,7 @@ class SignUp extends StatelessWidget {
         padding: const EdgeInsets.all(24.0),
         children: [
           AppwriteEmailAuth(
-            redirectUrl:
-                const String.fromEnvironment('APPWRITE_MAGIC_LINK_URL'),
+            redirectUrl: const String.fromEnvironment('APPWRITE_MAGIC_LINK_URL'),
             onSignInComplete: (response) {
               Navigator.of(context).pushReplacementNamed('/home');
             },

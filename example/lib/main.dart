@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Appwrite Auth UI Demo',
       theme: ThemeData(
-        colorSchemeSeed:  Colors.red,
+        colorSchemeSeed:  const Color(0xfff02e65),
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
         ),

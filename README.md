@@ -17,3 +17,85 @@ Run your app using the following command:
 flutter run --dart-define-from-file=assets/config.json
 ```
 
+## Email Auth
+
+Use a `AppwriteEmailAuth` widget to create an email and password signin/ signup form.
+It also contains a button to toggle to display a forgot password form.
+
+```dart
+AppwriteEmailAuth(
+  redirectUrl: const String.fromEnvironment('APPWRITE_MAGIC_LINK_URL'),
+  onSignInComplete: (response) {
+    Navigator.of(context).pushReplacementNamed('/home');
+  },
+  onSignUpComplete: (response) {
+    Navigator.of(context).pushReplacementNamed('/home');
+  },
+  metadataFields: [
+    MetaDataField(
+      prefixIcon: const Icon(Icons.person),
+      label: 'Username',
+      key: 'username',
+      validator: (val) {
+        if (val == null || val.isEmpty) {
+          return 'Please enter something';
+        }
+        return null;
+      },
+    ),
+  ],
+),
+```
+
+## Magic Link Auth
+
+Use `AppwriteMagicAuth` widget to create a magic link signIn form.
+```dart
+AppwriteMagicAuth(
+     onSuccess: (response) {
+        // do something, for example: 
+        // Navigator.of(context).pushReplacementNamed('/home');
+     },
+     onError: (error) {
+        // Do something with the error
+     },
+     redirectUrl: kIsWeb
+     ? null
+     : 'io.appwrite.flutterquickstart://login-callback',
+),
+```
+
+## Reset password
+
+Use `AppwriteResetPassword` to create a password reset form.
+
+```dart
+AppwriteResetPassword(                                   
+  onError: (error) {                                     
+    // Do something with the error                       
+  },                                                     
+  onSuccess: (response) {                                
+    Navigator.of(context).pushReplacementNamed('/home');
+  },                                                     
+),                                                        
+```
+
+## Social Auth
+
+Use `AppwriteSocialsAuth` to create list of social login buttons.
+```agsl
+AppwriteSocialsAuth(
+    colored: true,
+    socialProviders: SocialProviders.values,
+    onSuccess: (session) {
+      Navigator.of(context).pushReplacementNamed('/home');
+    },
+    onError: (error) {
+      // Do something with the error
+    },
+)
+```
+
+## Theming
+
+This library uses bare Flutter components so that you can control the appearance of the components using your own theme.

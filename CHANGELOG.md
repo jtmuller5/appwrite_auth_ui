@@ -1,5 +1,9 @@
+## 0.0.2
+- 🟩 Readme update
+- **Date**: 9-13-2023
+
 ## 0.0.1
-- 🟩Initial release
+- 🟩 Initial release
 - **Date**: 9-11-2023
 
 All notable changes to this project will be documented in this file.

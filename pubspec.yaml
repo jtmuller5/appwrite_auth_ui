@@ -1,6 +1,6 @@
 name: appwrite_auth_ui
 description: UI library to implement auth forms using Appwrite and Flutter
-version: 0.0.1
+version: 0.0.2
 homepage: https://appwrite.io/
 repository: https://github.com/jtmuller5/appwrite_auth_ui
 # flutter pub publish --dry-run
