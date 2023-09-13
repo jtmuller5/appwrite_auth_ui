@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        colorSchemeSeed:  Colors.red,
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
         ),

@@ -26,4 +26,4 @@ flutter:
 
 screenshots:
   - description: "Appwrite Auth UI"
-    path: assets/cubes_with_background.png
+    path: assets/appwrite_auth.png
