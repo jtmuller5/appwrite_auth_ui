@@ -6,7 +6,7 @@ repository: https://github.com/jtmuller5/appwrite_auth_ui
 # flutter pub publish --dry-run
 
 environment:
-  sdk: '>=2.17.0 <3.0.0'
+  sdk: '>=2.17.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -23,3 +23,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/logos/google_light.png
+
+screenshots:
+  - description: "Appwrite Auth UI"
+    path: assets/cubes_with_background.png
